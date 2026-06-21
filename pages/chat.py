@@ -150,7 +150,7 @@ def show_chat():
     # SIDEBAR - API Keys
     # ============================================================
     with st.sidebar:
-        st.markdown("## 🍊 Study Assistant")
+        st.markdown("##  Study Assistant")
         st.markdown("---")
         st.markdown("### 🔑 API Keys")
         
@@ -234,7 +234,7 @@ def show_chat():
                 <div class="message-wrapper user">
                     <div style="text-align: right; max-width: 85%;">
                         <div class="message-bubble user-message">
-                            <span class="sender-name">🌱 You</span>
+                            <span class="sender-name"> You</span>
                             {msg["content"]}
                         </div>
                     </div>
@@ -258,7 +258,7 @@ def show_chat():
                     </div>
                     <div style="max-width: 85%;">
                         <div class="message-bubble bot-message">
-                            <span class="sender-name">🍊 Study Buddy</span>
+                            <span class="sender-name"> Study Buddy</span>
                             {msg["content"]}
                         </div>
                     </div>
@@ -283,7 +283,7 @@ def show_chat():
             gemini_key = os.getenv("GEMINI_API_KEY", "")
             groq_key = os.getenv("GROQ_API_KEY", "")
 
-        with st.spinner("🍊 Study Buddy is thinking..."):
+        with st.spinner(" Study Buddy is thinking..."):
             bot_reply = get_ai_response(user_input, gemini_key, groq_key)
 
         st.session_state.messages.append({"role": "bot", "content": bot_reply})
