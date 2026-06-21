@@ -137,15 +137,20 @@ def show_chat():
             box-shadow: 0 0 0 2px rgba(211, 84, 0, 0.3) !important;
         }
         
-        #MainMenu, footer, header { visibility: hidden; }
+        /* ------------------------------------------------------------ */
+        /* ✅ FIXED: Only hide the footer (not the header/menu)         */
+        /* This keeps the hamburger menu visible on mobile.            */
+        /* ------------------------------------------------------------ */
+        footer { visibility: hidden; }
+        /* #MainMenu and header are NOT hidden – they stay visible */
         </style>
     """, unsafe_allow_html=True)
 
     # ============================================================
-    # SIDEBAR - API Keys (unchanged)
+    # SIDEBAR - API Keys
     # ============================================================
     with st.sidebar:
-        st.markdown("##  Study Assistant")
+        st.markdown("## 🍊 Study Assistant")
         st.markdown("---")
         st.markdown("### 🔑 API Keys")
         
@@ -200,7 +205,7 @@ def show_chat():
             st.rerun()
 
     # ============================================================
-    # HEADER – with SVG Book Icon (replaces 📚)
+    # HEADER – with SVG Book Icon
     # ============================================================
     st.markdown("""
         <div class="chat-header">
@@ -229,7 +234,7 @@ def show_chat():
                 <div class="message-wrapper user">
                     <div style="text-align: right; max-width: 85%;">
                         <div class="message-bubble user-message">
-                            <span class="sender-name"> You</span>
+                            <span class="sender-name">🌱 You</span>
                             {msg["content"]}
                         </div>
                     </div>
@@ -253,7 +258,7 @@ def show_chat():
                     </div>
                     <div style="max-width: 85%;">
                         <div class="message-bubble bot-message">
-                            <span class="sender-name"> Study Buddy</span>
+                            <span class="sender-name">🍊 Study Buddy</span>
                             {msg["content"]}
                         </div>
                     </div>
@@ -261,7 +266,7 @@ def show_chat():
             """, unsafe_allow_html=True)
 
     # ============================================================
-    # INPUT (unchanged – uses st.chat_input)
+    # INPUT (uses st.chat_input)
     # ============================================================
     user_input = st.chat_input(
         placeholder="💬 Ask me anything about your studies...",
@@ -278,7 +283,7 @@ def show_chat():
             gemini_key = os.getenv("GEMINI_API_KEY", "")
             groq_key = os.getenv("GROQ_API_KEY", "")
 
-        with st.spinner(" Study Buddy is thinking..."):
+        with st.spinner("🍊 Study Buddy is thinking..."):
             bot_reply = get_ai_response(user_input, gemini_key, groq_key)
 
         st.session_state.messages.append({"role": "bot", "content": bot_reply})
