@@ -89,7 +89,7 @@ def get_ai_response(user_message, gemini_key, groq_key):
         try:
             client = genai.Client(api_key=final_gemini.strip())
             response = client.models.generate_content(
-                model="gemini-1.5-flash"
+                model="gemini-2.5-flash",
                 contents=f"{SYSTEM_PROMPT}\n\nStudent: {user_message}"
             )
             return response.text
@@ -106,7 +106,7 @@ def get_ai_response(user_message, gemini_key, groq_key):
                     {"role": "system", "content": SYSTEM_PROMPT},
                     {"role": "user", "content": user_message}
                 ],
-                model="llama-3.3-70b-versatile",
+                model="llama-3.3-70b-instruct",
             )
             return chat_completion.choices[0].message.content
         except Exception as e:
