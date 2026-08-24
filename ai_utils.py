@@ -89,7 +89,7 @@ def get_ai_response(user_message, gemini_key, groq_key):
         try:
             client = genai.Client(api_key=final_gemini.strip())
             response = client.models.generate_content(
-                model="gemini-2.0-flash-exp",
+                model="gemini-pro",
                 contents=f"{SYSTEM_PROMPT}\n\nStudent: {user_message}"
             )
             return response.text
